@@ -1,6 +1,7 @@
 # Future State Journey: Secure Batch Retrieval
 
 **Persona:** Equipment review engineer, an engineer who verifies parts for equipment reviews and is under delivery pressure.
+
 **Goal:** Complete a BOM-wide equipment review on schedule without manually looking up each part.
 
 ## Journey Timeline
