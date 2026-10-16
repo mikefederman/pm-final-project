@@ -20,4 +20,4 @@ Fragile and not repeatable: Scraped data is a one-off snapshot. It goes stale an
 Manual reconciliation: The engineer still has to cross-reference by hand, which is the manual burden the persona wanted to avoid.
 Wrapper maintenance: Every engineer rebuilds this, so effort is duplicated across teams.
 - **The evidence, a specific quote or behavior from the research that proves this:** The engineer isn’t careless. The workaround is rational under deadline pressure, which makes it a product failure and not a user failure. A secure, built-in batch endpoint would remove the reason for the hack.
-- **Your journey map, a shareable link, or the map file you committed (e.g. journey-map.html):** 02-discovery/future-state-journey-map.md
+- **Your journey map, a shareable link, or the map file you committed (e.g. journey-map.html):** https://github.com/mikefederman/pm-final-project/blob/main/02-discovery/future-state-journey-map.md
