@@ -25,4 +25,4 @@ Slim Payload Mode
 - **What I cut, and the “no” I’m protecting the scope from:** Part Alternates Suggestions
 Async Batch Jobs with Callback	
 Agent Connector SDK
-- **Prototype/roadmap screenshot link (paste into your deliverables):** https://github.com/mikefederman/pm-final-project/blob/main/04-roadmap/roadmap-batch-retrieval.html (to open HTML, click Download raw file arrow)
+- **Prototype/roadmap screenshot link (paste into your deliverables):** https://github.com/mikefederman/pm-final-project/blob/main/04-roadmap/roadmap-batch-retrieval.html (click the link, then from HTML code file, click Download raw file arrow)
