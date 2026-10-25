@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Batch Retrieval for Part Identification Repository: Prototype</title>
+<style>
+:root{--bg:#0a1424;--panel:#101e36;--card:#14233f;--line:#25385c;--text:#e8eefb;--mute:#93a4c4;--ok:#3ddc97;--warn:#ffc857;--bad:#ff7d8a;--acc:#6aa8ff}
+*{box-sizing:border-box}
+body{margin:0;padding:24px;background:radial-gradient(1200px 600px at 10% -10%,#16294d,var(--bg));color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:860px;margin:0 auto}
+h1{margin:0 0 4px;font-size:24px;letter-spacing:-.01em}
+.sub{margin:0 0 16px;color:var(--mute)}
+.steps{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.step{flex:1;min-width:150px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;color:var(--mute);font-size:13px}
+.step.on{border-color:var(--acc);color:var(--text);background:var(--card)}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}
+h2{margin:0 0 12px;font-size:18px}
+label{display:block;margin:12px 0 4px;font-size:14px}
+textarea,input,select{width:100%;background:#0c182c;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px 12px;font:13px ui-monospace,Menlo,Consolas,monospace}
+textarea{min-height:170px;resize:vertical}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.row>div{flex:1;min-width:150px}
+button{font:inherit;font-size:14px;border-radius:10px;padding:9px 16px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--text)}
+button.p{background:var(--acc);border-color:var(--acc);color:#07142b;font-weight:600}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #8fc0ff;outline-offset:2px}
+.btns{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.mono{font:12px ui-monospace,Menlo,Consolas,monospace;color:var(--mute)}
+.pill{display:inline-block;font:600 14px ui-monospace,Menlo,Consolas,monospace;padding:4px 12px;border-radius:8px;border:1px solid currentColor}
+.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+.top{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.scroll{max-height:340px;overflow:auto;border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:6px 12px;border-bottom:1px solid var(--line)}
+th{position:sticky;top:0;background:var(--card);color:var(--mute);font-weight:500}
+td.m{font-family:ui-monospace,Menlo,Consolas,monospace}
+tr.fl td{background:#2a1c2c}
+.banner{border-left:4px solid currentColor;background:var(--card);border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:14px}
+.banner b{color:var(--text)}
+.demo{margin-top:22px;padding:14px;border:1px dashed var(--line);border-radius:12px}
+.demo h3{margin:0 0 4px;font-size:14px;color:var(--mute)}
+.hide{display:none}
+footer{margin-top:14px;font-size:12px;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <h1>Batch Retrieval for Part Identification Repository</h1>
+ <p class="sub">Prototype: Partial-Success Responses and Batch-Aware Quota (Must Have release)</p>
+ <div class="steps" id="steps"><div class="step">1. Batch Setup</div><div class="step">2. Batch Response</div><div class="step">3. Review Summary</div></div>
+
+ <section class="box" id="s1">
+  <h2>Batch Setup</h2>
+  <label for="parts"><b>Your BOM:</b> enter part numbers (one per line or comma-separated, up to 1,000)</label>
+  <textarea id="parts" placeholder="PN-00001&#10;PN-00002&#10;..."></textarea>
+  <p class="mono" id="info"></p>
+  <div class="row"><div style="max-width:280px"><label for="limit">Batches allowed before error (test setting)</label><input id="limit" type="number" min="1" max="100" value="3"></div></div>
+  <div class="btns"><button class="p" id="go" disabled>Submit Batch</button></div>
+  <div class="demo">
+   <h3>Demo data (for testing)</h3>
+   <p class="mono" style="margin:0 0 4px">Fills the box above with a generated list that includes invalid part numbers. Replace it with your own BOM at any time.</p>
+   <div class="row">
+    <div><label for="size">Demo BOM size</label><select id="size"><option>10</option><option selected>250</option><option>1000</option></select></div>
+    <div><button id="load" style="width:100%;color:var(--mute)">Load Demo BOM</button></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="box hide" id="s2" aria-live="polite">
+  <h2>Batch Response</h2>
+  <div id="r2"></div>
+ </section>
+
+ <section class="box hide" id="s3">
+  <h2>Review Summary</h2>
+  <div id="r3"></div>
+  <div class="btns"><button class="p" id="again">Start Another Batch</button><button id="reset3">Reset Quota</button></div>
+ </section>
+
+ <footer>Demo part numbers, the fixed catalog (PN-00001 to PN-02000), and response time are simulated in the browser. State is held in memory only; nothing is stored or sent.</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const S={used:0,busy:false,res:null};
+const pad=(n,w=5)=>String(n).padStart(w,"0");
+const valid=p=>/^PN-\d{5}$/.test(p)&&+p.slice(3)>=1&&+p.slice(3)<=2000;
+const parse=()=>$("parts").value.split(/[\s,]+/).filter(Boolean);
+
+function show(n){
+ ["s1","s2","s3"].forEach((id,i)=>$(id).classList.toggle("hide",i+1!==n));
+ [...$("steps").children].forEach((e,i)=>e.classList.toggle("on",i+1===n));
+}
+function sample(){
+ const n=+$("size").value,k=Math.max(1,Math.round(n*0.02)),bad=new Map();
+ for(let j=1;j<=k;j++)bad.set(Math.floor(j*n/(k+1)),j%2?"PN-9"+pad(j,4):"PN-"+pad(j,2)+"A"+pad(j,2));
+ const out=[];let v=1;
+ for(let i=0;i<n;i++)out.push(bad.has(i)?bad.get(i):"PN-"+pad(v++));
+ $("parts").value=out.join("\n");upd();
+}
+function upd(){
+ const n=parse().length;
+ $("info").textContent=n+" part number"+(n===1?"":"s")+" entered · Batches used: "+S.used+" of "+(+$("limit").value||1);
+ $("go").disabled=n===0||S.busy;
+}
+function submit(){
+ if(S.busy)return;S.busy=true;$("go").disabled=true;
+ const parts=parse(),limit=Math.max(1,+$("limit").value||1);
+ if(S.used>=limit){S.res={st:429};}
+ else{
+  S.used+=1;
+  const e=parts.map(p=>valid(p)?{p,ok:true}:{p,ok:false,code:"INVALID_PART"});
+  const fl=e.filter(x=>!x.ok).length;
+  S.res={st:200,e,fl,rt:120+Math.round(Math.min(parts.length,1000)*0.6),n:parts.length};
+ }
+ render2();show(2);
+}
+function render2(){
+ const r=S.res;
+ if(r.st===429){
+  $("r2").innerHTML=`<div class="top"><span class="pill bad">429 Too Many Requests</span></div>
+  <div class="banner bad"><b>Quota exhausted.</b> <span style="color:var(--text)">No part data was returned. This batch was not processed.</span></div>
+  <div class="btns"><button class="p" id="back">Back to Batch Setup</button><button id="reset2">Reset Quota</button></div>`;
+  $("back").onclick=again;$("reset2").onclick=()=>{resetQ();again()};
+  return;
+ }
+ const rows=r.e.map(x=>`<tr class="${x.ok?"":"fl"}"><td class="m">${x.p}</td><td class="${x.ok?"ok":"warn"}">${x.ok?"Returned":"Flagged"}</td><td class="m">${x.ok?"none":x.code}</td></tr>`).join("");
+ $("r2").innerHTML=`<div class="top"><span class="pill ${r.fl?"warn":"ok"}">200${r.fl?" (partial)":""}</span><span class="mono">Response time: ${r.rt} ms (simulated) · ${r.e.length} entries for ${r.n} submitted</span></div>
+ <div class="scroll"><table><tr><th>Part Number</th><th>Status</th><th>Code</th></tr>${rows}</table></div>
+ <div class="btns"><button class="p" id="next">Continue to Review Summary</button></div>`;
+ $("next").onclick=()=>{render3();show(3)};
+}
+function render3(){
+ const r=S.res,ret=r.e.length-r.fl,bad=r.e.filter(x=>!x.ok);
+ const cls=r.fl===0?"ok":ret===0?"bad":"warn";
+ const msg=r.fl===0?`All ${r.e.length} parts returned.`:ret===0?`No valid parts returned. All ${r.fl} parts are flagged.`:`${ret} of ${r.e.length} parts returned. ${r.fl} flagged for follow-up.`;
+ $("r3").innerHTML=`<div class="banner ${cls}"><b>${r.fl===0?"Review complete.":ret===0?"Review incomplete.":"Review complete with flagged parts."}</b> <span style="color:var(--text)">${msg}</span></div>
+ <h3 style="font-size:15px;margin:0 0 8px">Flagged Parts</h3>`+(bad.length?`<div class="scroll"><table><tr><th>Part Number</th><th>Code</th></tr>${bad.map(x=>`<tr><td class="m">${x.p}</td><td class="m">${x.code}</td></tr>`).join("")}</table></div>`:`<p class="mono">No flagged parts.</p>`);
+}
+function resetQ(){S.used=0;upd()}
+function again(){S.busy=false;show(1);upd()}
+
+$("load").onclick=sample;
+$("parts").oninput=upd;$("limit").oninput=upd;
+$("go").onclick=submit;
+$("again").onclick=again;
+$("reset3").onclick=()=>{resetQ();$("reset3").textContent="Quota Reset";setTimeout(()=>$("reset3").textContent="Reset Quota",1200)};
+show(1);upd();
+</script>
+</body>
+</html>
