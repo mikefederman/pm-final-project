@@ -1,14 +1,15 @@
-# PRD & Prototype Sprint
+# PRD & Prototype Sprint (Module 4)
 
-> **Module 4 · Lab 2.** Repo file `04-roadmap/prd-and-prototype.md` — part of your submission.
-> Do the lab in the **Module 4 · Exercise 2 Guide** (linked from the Module 4 deck), then click **⬇ Download .md** — it saves as this exact file. Commit it here.
-> It deepens the top feature from your `roadmap-prd-prototype.md` and feeds the **Roadmap, PRD & Prototype** slide of your Module 6 deck.
+## Pick & scope with MoSCoW
+- **The “Now” feature I’m scoping (name + one-line core description):** My Now feature is two features that complement each other. Providing one without the other does not result in full mitigation of the moment of misery. 1) Partial-Success Responses: A batch request returns results for every valid part number and an error code for each invalid one, so one bad part number does not fail the request. 2) Batch-Aware Quota: A batch request counts as one call against the engineer’s quota, whether it holds 10 or 1,000 part numbers.
+- **My finalized Must-Haves (after overriding the AI):** There are four finalized Must-Haves: 1) Failure isolation: an invalid part number does not abort the batch. Valid parts return with a 200 (partial) status. 2) Per-part result entries: each part is keyed by part number, with a status (returned or flagged) and a reason code field. One generic invalid code is enough for the first sprint. 3) No silent drops: returned plus flagged equals submitted in every response. 4) Batch-level quota charge: quota is evaluated and charged as 1 call per batch, for any size up to 1,000.
+- **What I demoted from Must → Should/Won’t, and why:** The list of Should, Could, and Won't is quite extensive. I did a pre-exercise completion prototype of what AI thought was required for this combined feature. A lot of the functionality was stripped after MoSCoW rules. The primary reasons for not including these items are workflow can complete without it, a convenience function, and better visibility but not a critical function.
 
-## Responses
+## Generate your Simplified PRD
+- **One thing my PRD makes explicit that a vague brief would have missed:** There is a lot of technical design notes in the PRD. A brief would likely avoid this level of granularity on purpose. The PRD also includes accounting for what is not being developed at this time. An interested executive might ask why not include more functionality? Answer: Not enough resources. Response: I'll get my checkbook.
 
-- **The "Now" feature I'm scoping (name + one-line core description):** _(not filled in)_
-- **My finalized Must-Haves (after overriding the AI):** _(not filled in)_
-- **What I demoted from Must → Should/Won't, and why:** _(not filled in)_
-- **One thing my PRD makes explicit that a vague brief would have missed:** _(not filled in)_
-- **Where the prototype revealed a gap in my PRD logic (what I updated):** _(not filled in)_
-- **My shareable prototype URL:** _(not filled in)_
+## Prompt-to-prototype sprint
+- **Where did the prototype reveal a gap in my PRD logic? (what I had to update):** The prototype is mostly a reveal tool that shows how the moment of misery (forced manual lookups) for the persona would be resolved if the new functionality were added to the existing product. I am not sure that is what I was expecting, but without the actual product to test with, the prototype at least shows the probability of success. The prototype provides a visual of a functionality that would run in the backend.
+- **My prototype, as a link or a screenshot (publish or share from your tool; in Lovable that is Share → Share Preview, in Bolt Publish → Web. No share URL? Screenshot the working flow):** PRD is an .md file (PDF version in support folder): https://github.com/mikefederman/pm-final-project/blob/main/04-roadmap/prd-batch-retrieval.md
+
+Prototype was built with Claude: https://github.com/mikefederman/pm-final-project/blob/main/04-roadmap/prototype-batch-retrieval.html (click the link, then in the GitHub HTML code screen, click the "Download raw file" arrow in the upper right-hand corner)
