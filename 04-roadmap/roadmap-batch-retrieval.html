@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Batch Retrieval API Pilot, Product Roadmap (Simulated)</title>
+<style>
+:root{--bg:#0a1424;--panel:#101e36;--card:#14233f;--line:#25385c;--text:#e8eefb;--mute:#93a4c4;
+--qw:#3ddc97;--mp:#6aa8ff;--fi:#aab4c8;--ts:#ff7d8a;--in:#f2c36b}
+*{box-sizing:border-box}
+body{margin:0;padding:20px 16px;background:radial-gradient(1200px 600px at 10% -10%,#16294d,var(--bg));color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1360px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;gap:12px 16px;justify-content:space-between;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 20px}
+h1{margin:0 0 4px;font-size:24px;letter-spacing:-.01em}
+header p{margin:0;color:var(--mute);max-width:560px}
+.meta{font:12px/1.6 ui-monospace,Menlo,Consolas,monospace;color:#8fc0ff;text-align:right}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.chip{display:flex;align-items:center;gap:8px;background:transparent;border:1px solid var(--line);color:var(--text);border-radius:999px;padding:5px 12px;font:inherit;font-size:12.5px;cursor:pointer}
+.chip i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.chip[aria-pressed=false]{opacity:.45}
+.chip:focus-visible,.card:focus-visible{outline:2px solid #8fc0ff;outline-offset:2px}
+.cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:start}
+@media(max-width:1100px){.cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.cols{grid-template-columns:minmax(0,1fr)}.meta{text-align:left}}
+.col{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:14px;padding:14px;min-width:0}
+.col h2{margin:0;font-size:18px}
+.col .sub{font:11.5px ui-monospace,Menlo,Consolas,monospace;color:var(--c);margin:2px 0 10px}
+.cap{height:6px;background:#0c182c;border-radius:3px;overflow:hidden;margin:0 0 4px}
+.cap b{display:block;height:100%;background:var(--qw)}
+.capt{font:11.5px ui-monospace,Menlo,Consolas,monospace;color:var(--mute);margin-bottom:10px}
+.card{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:10px;cursor:pointer;transition:opacity .2s,border-color .2s}
+.card:hover{border-color:var(--q)}
+.card.dim{opacity:.25}
+.top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.card strong{font-size:14px}
+.tag{flex:none;font:10.5px ui-monospace,Menlo,Consolas,monospace;color:var(--q);border:1px solid var(--q);border-radius:6px;padding:1px 6px;white-space:nowrap}
+.card p{margin:5px 0;color:var(--mute);font-size:13px}
+.moves{font:11.5px ui-monospace,Menlo,Consolas,monospace;color:var(--q)}
+.det{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--text)}
+.card[aria-expanded=true] .det{display:block}
+.det dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:0}
+.det dt{color:var(--mute)}.det dd{margin:0}
+.note{font-size:12.5px;color:var(--mute);border:1px dashed var(--line);border-radius:10px;padding:11px}
+.gate{margin-top:14px}
+.cut{margin-top:14px;border:1px dashed var(--ts);border-radius:14px;padding:14px;background:#1a1626}
+.cut h2{margin:0 0 10px;font-size:15px;color:var(--ts)}
+.cut-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
+@media(max-width:900px){.cut-list{grid-template-columns:minmax(0,1fr)}}
+.cut .card{border-color:#4a2c3d;background:#201a2e;margin-bottom:0}
+footer{margin-top:14px;font-size:12px;color:var(--mute)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div>
+  <h1>Batch Retrieval API Pilot, Product Roadmap</h1>
+  <p>Simulated exercise: scored backlog placed into a pilot-shaped roadmap by Effort vs. Value, time sinkers cut. Select a card for details.</p>
+ </div>
+ <div class="meta">Team: 2 engineers + 1 designer<br>Sprint: 3 weeks (about 6 eng-weeks)<br>Goal: pilot BOM-scale sessions 7% to 14%<br>Guardrails: 8,420 DAE; under 1,500 ms</div>
+</header>
+
+<div class="chips" id="chips" role="group" aria-label="Filter by quadrant"></div>
+<div class="cols" id="cols"></div>
+<section class="gate note" id="gate"><strong>Pilot decision gate (PM proposal).</strong> After about 3 pilot months, proceed to general production release planning if the pilot share of sessions with 100+ part numbers reaches 10% (14% target), batches account for every submitted part, and guardrails hold. Pivot if batches complete correctly but the share stays below 10%. Stop if batches fail or guardrails are breached. The share is read as an A/B comparison: the pilot team is split 50/50 by engineer, with a control group on the legacy path, and a reading counts once each group has about 1,356 sessions (about 100 engineers over about 13 weeks).</section>
+<section class="cut"><h2>Cut List: Explicit “No” Decisions</h2><div class="cut-list" id="cut"></div></section>
+<footer>All research data is simulated. Eng-week estimates and value scores are unvalidated judgments.</footer>
+</div>
+
+<script>
+const Q={qw:{n:"Quick Win",c:"#3ddc97"},in:{n:"Instrumentation",c:"#f2c36b"},mp:{n:"Major Project",c:"#6aa8ff"},fi:{n:"Fill-In",c:"#aab4c8"},ts:{n:"Time Sinker",c:"#ff7d8a"}};
+const F=[
+{id:"M6",t:"Pilot Measurement",q:"in",col:"measure",u:true,o:"Module 5 A/B test; MoSCoW M6 (was S7)",m:"reads the primary metric (7% to 14%)",d:"Counts sessions with 100+ part numbers on the legacy and batch paths with one counting rule, so the pilot can read the primary metric for the control and test groups. It was not selected as a Quick Win because it is required instrumentation for measuring the pilot, not a feature scored for value. It is not estimated, so additional development resources may be required."},
+{id:"B2",t:"Partial-Success Batch Responses",q:"qw",col:"now",v:5,e:2,w:1.5,o:"M2 UXR; M3 Data",m:"abandoned after error/timeout (31%)",d:"A BOM-wide request will almost always contain a bad part number; one failure must not sink the batch. Part of the pilot core."},
+{id:"B3",t:"Batch-Aware Quota Counting",q:"qw",col:"now",v:4,e:2,w:1,o:"M3 Data",m:"rate-limited 429s (12%)",d:"A batch counts as one call against quota, so 100+ part reviews stop hitting limits. Quota values stay with APIM."},
+{id:"B1",t:"Slim Payload Mode",q:"qw",col:"now",v:4,e:2,w:1,o:"M2 UXR",m:"hours per BOM-wide review; tokens per lookup (2,400)",d:"Returns the payload required to automate a lookup, with no UI elements, and is absorbed into the core pilot scope. Spares workflow builders from stripping UI data and lowers token cost as a benefit."},
+{id:"B7",t:"First-Batch Quickstart Kit",q:"fi",col:"later",v:3,e:1,w:0.5,o:"M3 Retention",m:"Mo. 1 retention (62%)",d:"Sample call, test dataset, and guided first request for the people who build workflows. The onboarding link to the Mo. 0 to 1 drop is an inference. Mostly designer time."},
+{id:"B5",t:"BOM File Ingestion",q:"fi",col:"later",v:3,e:3,w:2.5,o:"M3 Cohort",m:"BOM-scale session share (7%)",d:"Converts a BOM file into a part-number batch request and is treated as a workflow-side capability. Rescored from Quick Win to Fill-In (value 5 to 3), since the batch endpoint already accepts part numbers."},
+{id:"B4",t:"Secure Bulk Export",q:"fi",col:"later",v:3,e:4,w:4,o:"M3 Cohort",m:"anomalous bulk-access events (412/mo)",d:"Encrypted, access-logged download to replace CSV dumps (33% suspected workaround). Reclassified to Fill-In by the PM: schedule when capacity frees up, since a download is not a BOM-scale API session."},
+{id:"B6",t:"Bulk Access Audit Dashboard",q:"fi",col:"later",v:2,e:3,w:2.5,o:"M3 Data",m:"anomalous bulk-access events (412/mo)",d:"Measures sanctioned versus anomalous activity but changes no engineer behavior. Logging and reporting are assumed for the pilot."},
+{id:"B8",t:"Agent Connector SDK",q:"ts",col:"cut",v:2,e:4,w:"5+",o:"M3 Cohort",m:"none for the persona",d:"Origin is Pipeline Automators (22% of base), not Equipment Review Engineers. Would consume most of the sprint."},
+{id:"B9",t:"Async Batch Jobs with Callback",q:"ts",col:"cut",v:2,e:4,w:4,o:"Engineering",m:"none for the persona",d:"Engineering preference. The core use case is a synchronous 1,000-part call under 1,500 ms; background jobs sit outside that guardrail."},
+{id:"B10",t:"Part Alternates Suggestions",q:"ts",col:"cut",v:1,e:5,w:"6+",o:"Stakeholder Request",m:"none for the persona",d:"No tie to the moment of misery or any M2/M3 evidence. Needs new substitute-part data and logic."}
+];
+const cols=[
+{k:"now",n:"Now",s:"Pilot build · 3-week sprint",c:"#3ddc97"},
+{k:"measure",n:"Pilot Measurement",s:"Required instrumentation · unscored",c:"#f2c36b"},
+{k:"next",n:"Next",s:"General production release prerequisites",c:"#6aa8ff"},
+{k:"later",n:"Later",s:"Deferred · spare capacity",c:"#aab4c8"}];
+const active=new Set(Object.keys(Q));
+const el=(h)=>{const t=document.createElement("template");t.innerHTML=h.trim();return t.content.firstChild};
+function card(f){
+ const b=el(`<button class="card" data-q="${f.q}" aria-expanded="false" style="--q:${Q[f.q].c}">
+ <div class="top"><strong>${f.id} · ${f.t}</strong><span class="tag">${Q[f.q].n}</span></div>
+ <p>${f.d.split(". ")[0].replace(/\.$/,"")}.</p>
+ <div class="moves">▲ moves: ${f.m}</div>
+ <div class="det"><p style="color:inherit">${f.d}</p><dl>${f.u?`<dt>Value</dt><dd>Not scored (required, not prioritized)</dd><dt>Effort</dt><dd>Not estimated</dd><dt>Origin</dt><dd>${f.o}</dd>`:`<dt>Value</dt><dd>${f.v} of 5</dd><dt>Effort</dt><dd>${f.e} of 5 (about ${f.w} eng-weeks)</dd><dt>Origin</dt><dd>${f.o} (simulated label)</dd>`}</dl></div></button>`);
+ b.onclick=()=>b.setAttribute("aria-expanded",b.getAttribute("aria-expanded")!=="true");
+ return b;
+}
+const colsEl=document.getElementById("cols");
+cols.forEach(c=>{
+ const s=el(`<section class="col" style="--c:${c.c}"><h2>${c.n}</h2><div class="sub">${c.s}</div></section>`);
+ if(c.k==="now"){
+  const used=F.filter(f=>f.col==="now").reduce((a,f)=>a+f.w,0);
+  s.append(el(`<div class="cap" aria-hidden="true"><b style="width:${Math.min(100,used/6*100)}%"></b></div>`),
+   el(`<div class="capt">${used} of about 6 eng-weeks used; core endpoint and pilot measurement not estimated</div>`));
+ }
+ F.filter(f=>f.col===c.k).forEach(f=>s.append(card(f)));
+ if(c.k==="measure") s.append(el(`<div class="note"><strong>Not a Quick Win.</strong> Required instrumentation for measuring the pilot. Without it, the proceed, pivot or stop decision has no evidence. <strong>Additional development resources may be required:</strong> it is not estimated and is not counted in the Now capacity bar.</div>`));
+ if(c.k==="next") s.append(el(`<div class="note"><strong>No Major Project scored.</strong> Unscored items needed before general production release: the Should list from the combined MoSCoW, backend query efficiency, full security guardrails (InfoSec), and quota policy (APIM).</div>`));
+ colsEl.append(s);
+});
+const cut=document.getElementById("cut");
+F.filter(f=>f.col==="cut").forEach(f=>cut.append(card(f)));
+const chips=document.getElementById("chips");
+Object.entries(Q).forEach(([k,v])=>{
+ const b=el(`<button class="chip" aria-pressed="true" style="--c:${v.c}"><i></i>${v.n}</button>`);
+ b.onclick=()=>{
+  active.has(k)?active.delete(k):active.add(k);
+  b.setAttribute("aria-pressed",active.has(k));
+  document.querySelectorAll(".card").forEach(c=>c.classList.toggle("dim",!active.has(c.dataset.q)));
+ };
+ chips.append(b);
+});
+</script>
+</body>
+</html>
