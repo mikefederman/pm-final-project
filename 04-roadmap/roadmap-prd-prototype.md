@@ -8,12 +8,9 @@
 
 ## Scan the backlog & set a human baseline
 - **My instinctive “quick wins” before touching the AI (2 to 3 feature IDs + why):** The following:
-
-B5 BOM File Ingestion: Accepts a BOM file and converts it to a part-number batch request. Because this is a core function for equipment reviews.
-
-B3 Batch-Aware Rate Limit Tier: Counts a batch request as one call against quota instead of up to 1,000. Because this is important for large multi-part lookups.
-
-B1 Slim Payload Mode: Returns only requested part fields, with no frontend UI elements, to cut token volume. Because this will streamline the process.
+  - B5 BOM File Ingestion: Accepts a BOM file and converts it to a part-number batch request. Because this is a core function for equipment reviews.
+  - B3 Batch-Aware Rate Limit Tier: Counts a batch request as one call against quota instead of up to 1,000. Because this is important for large multi-part lookups.
+  - B1 Slim Payload Mode: Returns only requested part fields, with no frontend UI elements, to cut token volume. Because this will streamline the process.
 
 ## Audit, override & decide
 - **Where did you override the AI? (feature + old vs. new score + why):** AI had three Quick Win features. Two matched the three I identified has highest priority. My feature that did not match was ultimately determined to be not a requirement to complete a batch lookup. I let AI override my decision because AI's top feature is mandatory for success. I treated this like a discussion with the architect. The final choice is the technically accurate decision.
