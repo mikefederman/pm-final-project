@@ -24,14 +24,12 @@
 
 ## Formalize your hypothesis & shipping criteria
 - **Your hypothesis (filled in):** I believe that batch retrieval (partial-success responses, batch-aware quota counting and an automation payload) for Equipment Review Engineers will result in BOM-wide reviews completing through the sanctioned path instead of looped lookups or shadow workarounds, as measured by a 7-percentage-point increase (7% to 14%) in the share of pilot sessions submitting 100+ part numbers within 13 weeks. We will protect daily active engineers (8,420) and batch response time under 1,500 ms throughout the test.
-- **Your shipping criteria (filled in):** We will SHIP if the share of sessions submitting 100+ part numbers improves by ≥ 3 percentage points (7% to 10%) at p < 0.05 (two-sided)
+- **Your shipping criteria (filled in):** The following:
+  - We will SHIP if the share of sessions submitting 100+ part numbers improves by ≥ 3 percentage points (7% to 10%) at p < 0.05 (two-sided)
 and batch response time does not exceed 1,500 ms, daily active engineers do not drop more than 2% (from 8,420) and legacy p95 latency does not rise more than 10% (from 620 ms) after 13 weeks.
-
-We will ITERATE if direction is positive but lift is below the MDE.
-
-We will KILL if the primary metric shows no improvement or moves negatively.
-
-The read date is fixed at the end of 13 weeks, no results reviewed before this date.
+  - We will ITERATE if direction is positive but lift is below the MDE.
+  - We will KILL if the primary metric shows no improvement or moves negatively.
+  - The read date is fixed at the end of 13 weeks, no results reviewed before this date.
 - **Hardest parameter to define, and did it change your hypothesis? quick debrief:** **Hardest parameter:** the control group, together with the primary metric definition it depends on. The Module 3 and 4 pilot gave batch retrieval to the whole select team and compared it with the 7% legacy baseline, so there was no control. Setting one up exposed two more gaps. The legacy baseline counts *lookups*, while the batch path counts *part numbers submitted*. And a "session" was not defined for an automated workflow. The instrumentation needed to read the metric had also been deferred as out of scope for a basic POC.
 
-**Did it change the hypothesis?** The claim did not change: the same persona, feature, metric, baseline and 14% target. What changed is how the hypothesis is tested. I added a counting rule that measures both paths in one unit, a 50/50 control group split by engineer, guardrail boundaries, and a fixed 13-week read date. Session counting also moved from a Should to a Must, so the earlier documents now lead into the test.
+**Did it change the hypothesis?** The claim did not change: the same persona, feature, metric, baseline, and 14% target. What changed is how the hypothesis is tested. I added a counting rule that measures both paths in one unit, a 50/50 control group split by engineer, guardrail boundaries, and a fixed 13-week read date. Session counting also moved from a Should to a Must, so the earlier documents now lead into the test.
