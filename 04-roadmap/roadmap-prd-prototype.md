@@ -21,3 +21,8 @@
 - **My “Now” lane (this sprint), the 2 to 3 quick wins I’ll build first:** Partial-Success Batch Responses, Batch-Aware Quota Counting, Slim Payload Mode
 - **What I cut, and the “no” I’m protecting the scope from:** Agent Connector SDK, Async Batch Jobs with Callback, Part Alternates Suggestions
 - **Prototype/roadmap screenshot link (paste into your deliverables):** Access the feature roadmap, PRD, and prototype from the Support Files at https://github.com/mikefederman/pm-final-project/blob/main/06-launch/support-files.md.
+
+To open an HTML file from GitHub:
+  - Click one of the HTML links.
+  - From the GitHub HTML code screen, click the **Download raw file** arrow in the upper right-hand corner.
+  - Open the downloaded file.
