@@ -2,6 +2,8 @@
 
 > ★ Final submission, the deck you submit to the learning platform to qualify for certification.
 
+**READ ME** The final presentation was not built using this template.
+
 Your final project is a single presentation, a self-contained HTML deck built from the six deliverable files in this repo, that tells the story of your product concept end-to-end.
 
 ## How to build it
