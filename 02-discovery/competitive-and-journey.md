@@ -19,7 +19,7 @@
   - Cross-reference the BOM against the dump manually and complete the review.
 - **Core frustration, the exact moment the process feels most “broken”:** The following:
   - Wasted effort up front: Steps 2 and 3 are spent on a loop that fails, so time goes to a route that was never going to work.
-  - Fragile and not repeatable: Scraped data is a one-off snapshot. It goes stale and can’t be refreshed without repeating the process, which echoes the stale-data problem in our bug reports.
+  - Fragile and not repeatable: Scraped data is a one-off snapshot. It goes stale and cannot be refreshed without repeating the process, which echoes the stale-data problem in our bug reports.
   - Manual reconciliation: The engineer still has to cross-reference by hand, which is the manual burden the persona wanted to avoid.
   - Wrapper maintenance: Every engineer rebuilds this, so effort is duplicated across teams.
 - **The evidence, a specific quote or behavior from the research that proves this:** The engineer is not careless. The workaround is rational under deadline pressure, which makes it a product failure and not a user failure. A sanctioned batch path.
