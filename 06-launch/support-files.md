@@ -3,7 +3,7 @@
 **To open an HTML file from GitHub:**
 
 1. Click one of the HTML links below.
-2. From the GitHub HTML code screen, click the "Download raw file" arrow in the upper right-hand corner.
+2. From the GitHub HTML code screen, click the **Download raw file** arrow in the upper right-hand corner.
 3. Open the downloaded file.
 
 ## Interactive Roadmap
