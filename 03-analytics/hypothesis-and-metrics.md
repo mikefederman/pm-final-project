@@ -20,9 +20,9 @@
 
 ## Step 3 · Craft your hypothesis
 - **Qualitative evidence (from M2), quote the specific friction / moment of misery for your persona:** The following:
-  - Persona friction: engineers "scrape data from the legacy UI or share unencrypted CSV dumps over insecure channels" (Module 2, shadow workarounds).
-  - Context: verifies parts for equipment reviews under delivery pressure with no sanctioned bulk or automated path.
-  - Takeaway (Module 3 wording): the shadow workaround is a symptom of the missing bulk path.
+  - Persona friction: Engineers "scrape data from the legacy UI or share unencrypted CSV dumps over insecure channels" (Module 2, shadow workarounds).
+  - Context: Verifies parts for equipment reviews under delivery pressure with no sanctioned bulk or automated path.
+  - Takeaway (Module 3 wording): The shadow workaround is a symptom of the missing bulk path.
 - **Quantitative evidence (from M3), name the metric or data point that confirms the pain; cite the number:** Snapshot 3: Equipment Review Engineers show 33% suspected workaround access (vs. 14% and 5% for other segments), 49% looped lookups, and a projected 0.5 to 1 hr saved per review (a review takes 1 to 2 hours). Snapshot 1: BOM-scale sessions fell from 15% to 7%; sessions abandoned after error or timeout rose from 18% to 31%; 412 anomalous bulk-access events per month. (All figures are simulated.)
 - **Persona, role, goal, and the friction you confirmed in the reconciliation steps:** Equipment review engineer.
   - Goal: Complete a BOM-wide equipment review on schedule without manually looking up each part.
