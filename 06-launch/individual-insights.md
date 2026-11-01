@@ -2,7 +2,7 @@
 
 > Module 6 · Launch Impactful GTM Plans, ★ Deliverable 6 (reflection)
 >
-> _I picked up new vocabulary that is actively being used in my work environment. The PRD/prototype excercise was especially useful as that will likely be the path forward instead of Epics._
+> _Insights_
 
 ## Friction points
 
@@ -12,7 +12,7 @@ _____
 
 ## Key learnings
 
-_Module 5 changed the arc of the project from a general add-on feature to actually measuring the results. I had to go back and update content for the roadmap planning and MoSCoW to ensure the instrumentation necessary would be available. However, it likely would require at least one more sprint than originally planned to include all the necessary instrumentation._
+_Module 5 changed the arc of the project from a general add-on feature to actually measuring the results. I had to go back and update content for the roadmap planning and MoSCoW to ensure the instrumentation necessary would be available. However, it likely would require at least one more sprint than originally planned to include all the necessary instrumentation. I picked up new vocabulary that is actively being used in my work environment. The PRD/prototype excercise was especially useful as that will likely be the path forward instead of Epics._
 
 _____
 
