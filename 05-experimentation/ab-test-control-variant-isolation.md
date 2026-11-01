@@ -1,4 +1,4 @@
-# A/B Test Design: Control, Variant And Isolation Check
+# A/B Test Design: Control, Variant, and Isolation Check
 
 *All research data is simulated. Items marked Inference are not supported by the research.*
 
