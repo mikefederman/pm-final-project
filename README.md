@@ -1,6 +1,6 @@
 # My Product: Product Management Final Project
 
-> My final project for Product School's **Product Management** certification. One product concept, **Batch Retrieval for Part Repository** (my own initiative), taken from a raw problem to a launch-ready concept across six in-class labs, no homework required.
+> My final project for Product School's **Product Management** certification. One product concept, **Batch Retrieval for Part Identification Repository** (my own initiative), taken from a raw problem to a launch-ready concept across six in-class labs, no homework required.
 
 The deliverables are available in their module folders. The final project was created outside the Final Presentation file, so that file is just a template.
 
@@ -22,7 +22,7 @@ The deliverables are available in their module folders. The final project was cr
 | 6 | **Individual Insights** (reflection) | M6 | ☐ | `06-launch/individual-insights.md` |
 | ★ | **Final Project Presentation** (the deck you submit) | M6 | ☐ | `06-launch/final-presentation.md` |
 
-## The project in one sentence
+## The project
 
 **Product concept:** Batch Retrieval for the Part Identification Repository. It is a backend capability that lets an engineer’s automated workflow retrieve 1 to 1,000 part numbers in one request. Every valid part comes back in an automation-ready payload, each invalid part is flagged without failing the batch, and the request counts as one call against quota.
 
