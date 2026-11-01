@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Batch Retrieval for Part Identification Repository, Product Management Foundations Final Project</title>
+<style>
+@import url('https://product-school-platform.github.io/ps-content-library/assets/fonts/ps-fonts.css');
+:root{--bg:#07162C;--fg:#ffffff;--muted:rgba(255,255,255,0.72);--line:rgba(255,255,255,0.10);--card:rgba(255,255,255,0.04);--acc:#3b82f6}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:'Saans',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.55}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,color-mix(in srgb,var(--acc) 14%,transparent) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 90% 90%,rgba(168,139,250,0.08) 0%,transparent 60%);pointer-events:none}
+main{position:relative;max-width:1100px;margin:0 auto;padding:72px 32px 40px}
+h1,h2{font-family:'Saans',sans-serif;letter-spacing:-0.01em;margin:0}
+a{color:var(--acc)}
+.hero{text-align:center;margin-bottom:88px}
+.badge{display:inline-block;font-size:11px;font-weight:900;letter-spacing:0.16em;text-transform:uppercase;color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,transparent);border:1px solid color-mix(in srgb,var(--acc) 40%,transparent);border-radius:999px;padding:6px 14px;margin-bottom:24px}
+.hero h1{font-size:clamp(40px,6.5vw,72px);font-weight:900;line-height:1.04;margin-bottom:20px;color:var(--fg)}
+.hero .who{font-size:16px;color:var(--muted);margin-bottom:26px}
+.cta{display:inline-block;background:var(--acc);color:#07162C;text-decoration:none;padding:12px 26px;border-radius:999px;font-weight:800;font-size:14px}
+section{margin-bottom:88px}
+.eyebrow{font-size:11px;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:var(--acc);margin-bottom:10px}
+section h2{font-size:clamp(28px,3.8vw,42px);font-weight:800;margin-bottom:10px}
+.lede{color:var(--muted);font-size:16px;max-width:720px;margin:0 0 30px}
+.grid{display:flex;flex-direction:column;gap:20px}
+.m-body{columns:2;column-gap:40px;column-rule:1px solid var(--line)}
+.m-body h4{break-after:avoid;font-size:13px;margin:18px 0 8px}
+.m-body>h4:first-child{margin-top:0}
+.m-body li:not(:has(ul)),.m-body p{break-inside:avoid}
+.m-body ul{margin:0 0 10px;padding-left:18px;font-size:14px}
+.m-body ul ul{margin:6px 0 4px;padding-left:20px;font-size:13.5px;color:rgba(255,255,255,0.86);list-style-type:circle}
+.m-body ul ul ul{margin:4px 0 2px;font-size:13px;color:var(--muted);list-style-type:square}
+.m-body li{margin-bottom:5px}
+.m-body ul ul li{margin-bottom:3px}
+.m-body a{word-break:break-all}
+.m-body p.aside{margin:4px 0 4px;font-size:13.5px;color:rgba(255,255,255,0.86)}
+@media(max-width:800px){.m-body{columns:1}}
+.support{background:var(--card);border:1px solid color-mix(in srgb,var(--acc) 40%,transparent);border-radius:14px;padding:22px 24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:28px}
+@media(max-width:800px){.support{grid-template-columns:minmax(0,1fr)}}
+.support h3{margin:0 0 10px;font-size:12px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:var(--acc)}
+.support ol{margin:0;padding-left:20px;font-size:14px}.support ol li{margin-bottom:6px}
+.links{display:flex;flex-direction:column;gap:10px}
+.link-group{font-size:12px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin:6px 0 -2px}
+.link-group:first-child{margin-top:0}
+.links a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,0.03);color:var(--fg);text-decoration:none;font-size:14px;font-weight:600}
+.links a:hover{border-color:var(--acc)}
+.links a span{flex:none;font-size:11px;font-weight:800;letter-spacing:0.08em;color:var(--acc);border:1px solid color-mix(in srgb,var(--acc) 45%,transparent);border-radius:6px;padding:2px 8px}
+.m-card{background:var(--card);border:1px solid color-mix(in srgb,var(--col) 40%,transparent);border-radius:14px;overflow:hidden}
+.m-head{padding:16px 20px;background:linear-gradient(135deg,color-mix(in srgb,var(--col) 20%,transparent),transparent 75%);border-bottom:1px solid color-mix(in srgb,var(--col) 25%,transparent)}
+.m-num{font-size:11px;font-weight:900;letter-spacing:0.14em;text-transform:uppercase;color:var(--col);margin-bottom:4px}
+.m-name{font-size:18px;font-weight:800}
+.m-body{padding:14px 20px 18px}
+.in-label{font-size:10.5px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:var(--col);margin-bottom:6px}
+.m-body p,.in-card p{margin:0 0 8px;font-size:14px}
+.m-body h4{font-size:12px;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;color:var(--col);margin:14px 0 6px}.m-body h4:first-child{margin-top:0}
+.m-body ul{margin:0 0 8px;padding-left:18px;font-size:14px}.m-body li{margin-bottom:4px}
+.missing{color:var(--muted);font-style:italic}
+.in-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.in-card{background:var(--card);border:1px solid color-mix(in srgb,var(--col) 40%,transparent);border-radius:14px;padding:22px 24px}
+.in-card p{font-size:16px;font-weight:600}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:32px 20px;border-top:1px solid var(--line)}
+@media(max-width:800px){.in-grid{grid-template-columns:1fr}main{padding:56px 20px 30px}}
+
+.m-card{background:var(--card);border:1px solid color-mix(in srgb,var(--col) 40%,transparent);border-radius:14px;overflow:hidden}
+.m-head{padding:16px 20px;background:linear-gradient(135deg,color-mix(in srgb,var(--col) 20%,transparent),transparent 75%);border-bottom:1px solid color-mix(in srgb,var(--col) 25%,transparent)}
+.m-num{font-size:11px;font-weight:900;letter-spacing:0.14em;text-transform:uppercase;color:var(--col);margin-bottom:4px}
+.m-name{font-size:18px;font-weight:800}
+.m-body{padding:14px 20px 18px}
+.in-label{font-size:10.5px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:var(--col);margin-bottom:6px}
+.m-body p,.in-card p{margin:0 0 8px;font-size:14px}
+.m-body h4{font-size:12px;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;color:var(--col);margin:14px 0 6px}.m-body h4:first-child{margin-top:0}
+.m-body ul{margin:0 0 8px;padding-left:18px;font-size:14px}.m-body li{margin-bottom:4px}
+.missing{color:var(--muted);font-style:italic}
+.in-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.in-card{background:var(--card);border:1px solid color-mix(in srgb,var(--col) 40%,transparent);border-radius:14px;padding:22px 24px}
+.in-card p{font-size:16px;font-weight:600}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:32px 20px;border-top:1px solid var(--line)}
+@media(max-width:800px){.in-grid{grid-template-columns:1fr}main{padding:56px 20px 30px}}
+</style>
+</head>
+<body>
+<main>
+<section class="hero"><span class="badge">Product Management Foundations &middot; Final Project</span><h1>Batch Retrieval for Part Identification Repository</h1><p class="who">Mike Federman</p><a class="cta" href="https://github.com/mikefederman/pm-final-project" target="_blank" rel="noopener">View the repo &rarr;</a></section>
+<section><div class="eyebrow">The product</div><h2>From problem to launch</h2><p class="lede">One product carried through every stage of the product development life cycle, one deliverable per module.</p><div class="grid"><div class="m-card" style="--col:#34d399"><div class="m-head"><div class="m-num">Module 1</div><div class="m-name">Problem Hook &amp; Value Proposition</div></div><div class="m-body"><h4>Responses</h4>
+<ul>
+<li><strong>Chosen path, which scenario are you committing to? (StreamLine or RouteLogic, or your own):</strong> My own initiative: Add batch retrieval feature to a part identification repository to enable fully automated engineering workflows through a shared API. The current function of the repository is a one-click, one event process.</li>
+<li><strong>Strategic crisis, based on the brief, if the company does nothing for 12 months, what happens to its market position?:</strong> If left unaddressed for 12 months, the company faces a critical drain on engineering productivity and an escalating data security risk. Engineers will continue to waste time on manual lookups, while teams deploy unapproved workarounds that bypass security protocols and create dangerous blind spots for risk assessment.</li>
+<li><strong>Moment of misery, what is the user likely doing outside the product (Google, spreadsheets, a competitor) because your tool isn’t serving them?:</strong> Facing a BOM-wide review deadline, engineers must find every part individually, retrieve its data or drawing, and cross-reference each item by hand. To keep up, they loop single lookups or fall back on shadow workarounds: scraping data from the legacy UI and sharing unencrypted CSV dumps.</li>
+<li><strong>Problem hook, summarize the business risk and user pain into one urgent sentence.:</strong> The lack of batch retrieval capability forces engineers into time-intensive single-part lookup loops and shadow workarounds that create security visibility gaps and inflate AI computing costs.</li>
+<li><strong>Value proposition, based on the proposed initiative (Spotlight or Velocity), what is the new value and why is it urgent to launch now?:</strong> The optimized API provides batch retrieval that returns every valid part and accounts for every submitted part, restoring engineering velocity, removing the need for shadow workarounds, and giving AI-assisted workflows a path to scale at lower cost. One request resolves up to 1,000 parts in under 1,500 ms, with at least 75% fewer tokens per lookup as a benefit.</li>
+</ul>
+<h4>Cold-read your own hook</h4>
+<ul>
+<li><strong>Is the business risk high enough to justify a new initiative, a high-stakes threat, or a minor inconvenience?:</strong> It is a high-stakes threat to the company's digital transformation strategy. Without programmatic automation, engineering teams cannot leverage AI-assisted workflows for equipment reviews. This traps discovery in manual processes that risk delayed deliverables and quality issues.</li>
+<li><strong>Is the moment of misery a systemic problem or just an edge case?:</strong> It is a systemic problem. Every bulk part workflow, whether auditing an entire bill of materials (BOM), cross-referencing assembly and schematic drawings, or running batch procurement manifests, is fundamentally blocked by the product's single-click architecture.</li>
+<li><strong>Does the value proposition actually remove the obstacle you identified, or is it a generic feature?:</strong> It directly removes the obstacle. Instead of a generic search improvement, it adds a sanctioned batch path that solves the sequential throughput bottleneck (up to 1,000 parts in under 1,500 ms). It also cuts LLM context cost through an automation payload, with at least 75% fewer tokens as a benefit.</li>
+</ul></div></div><div class="m-card" style="--col:#22d3ee"><div class="m-head"><div class="m-num">Module 2</div><div class="m-name">Competitive Analysis &amp; Journey Map</div></div><div class="m-body"><h4>Responses</h4>
+<ul>
+<li><strong>Role, who are you solving for? (the specific user segment or profile):</strong> An engineer who verifies parts for equipment reviews and is under delivery pressure with no sanctioned bulk or automated path.</li>
+<li><strong>Goal, what is this user ultimately trying to achieve?:</strong> Complete a BOM-wide equipment review on schedule without manually looking up each part.</li>
+<li><strong>Friction, the main barrier (moment of misery) stopping them from succeeding:</strong> With no official bulk endpoint, hundreds of sequential lookups are not realistic. The engineer scrapes data from the legacy UI or passes an unencrypted CSV dump over an insecure channel to meet the deadline. They know this bypasses security protocols, and it leaves the company with no visibility into where the data goes.</li>
+<li><strong>External tools, the outside platforms or tools the user is forced to use:</strong> The following:<ul>
+<li>Custom script wrappers or sequential GET requests (from the research)</li>
+<li>Scraping data from the legacy UI (from the research)</li>
+<li>Unencrypted CSV dumps passed over insecure channels (from the research)</li>
+<li>A spreadsheet or local file to cross-reference the BOM (assumption)</li>
+</ul>
+</li>
+<li><strong>The process, the 3 to 5 manual steps the user takes to get the job done:</strong> The following:<ul>
+<li>Receive the BOM for the equipment review and see that it has hundreds of parts to verify.</li>
+<li>Try the sanctioned route first, writing a script wrapper to loop single-part GET requests.</li>
+<li>The loop trips the rate limiters and fails partway through. With no native way to resume, they must restart or write retry logic.</li>
+<li>Abandon the API and scrape data from the legacy UI directly to get the data in one pass.</li>
+<li>Export the results as a CSV dump.</li>
+<li>Share the CSV with teammates over an insecure channel, unencrypted.</li>
+<li>Cross-reference the BOM against the dump manually and complete the review.</li>
+</ul>
+</li>
+<li><strong>Core frustration, the exact moment the process feels most “broken”:</strong> The following:<ul>
+<li>Wasted effort up front: Steps 2 and 3 are spent on a loop that fails, so time goes to a route that was never going to work.</li>
+<li>Fragile and not repeatable: Scraped data is a one-off snapshot. It goes stale and cannot be refreshed without repeating the process, which echoes the stale-data problem in our bug reports.</li>
+<li>Manual reconciliation: The engineer still has to cross-reference by hand, which is the manual burden the persona wanted to avoid.</li>
+<li>Wrapper maintenance: Every engineer rebuilds this, so effort is duplicated across teams.</li>
+</ul>
+</li>
+<li><strong>The evidence, a specific quote or behavior from the research that proves this:</strong> The engineer is not careless. The workaround is rational under deadline pressure, which makes it a product failure and not a user failure. A sanctioned batch path.</li>
+<li><strong>Your journey map, a shareable link, or the map file you committed (e.g. journey-map.html):</strong> <a target="_blank" rel="noopener" href="https://github.com/mikefederman/pm-final-project/blob/main/02-discovery/future-state-journey-map.md">https://github.com/mikefederman/pm-final-project/blob/main/02-discovery/future-state-journey-map.md</a></li>
+</ul></div></div><div class="m-card" style="--col:#38bdf8"><div class="m-head"><div class="m-num">Module 3</div><div class="m-name">Data-Backed Hypothesis</div></div><div class="m-body"><h4>Hypothesis &amp; Success Metrics (Module 3)</h4>
+<p><em>Assumptions: All research data is simulated. The feature is piloted with a select team of engineers vetted for security. Role-based access control, activity logging and reporting are assumed, not built. Full security guardrails are required before general production release.</em></p>
+<h4>Pre-work · Hypothesis check</h4>
+<ul>
+<li><strong>Role, who you are solving for (from M2):</strong> Equipment review engineer. Verifies parts for equipment reviews under delivery pressure, with no sanctioned bulk or automated path.</li>
+<li><strong>Goal, what this user is ultimately trying to achieve:</strong> Complete a BOM-wide equipment review on schedule without manually looking up each part.</li>
+<li><strong>Friction / moment of misery, the specific pain blocking their goal:</strong> Facing a BOM-wide review deadline with only 1:1 single-click lookup in the legacy UI, so the engineer must loop through parts one at a time (manual looping exhaustion, rate limiting, brittle error recovery).</li>
+<li><strong>Current workaround, the external tool or manual process they rely on (M2):</strong> Scrapes data from the legacy UI or shares unencrypted CSV dumps to meet deadlines (shadow workarounds that bypass security protocols, tolerated while no sanctioned alternative exists).</li>
+<li><strong>Problem Hook, your one-sentence framing of the business crisis (M1):</strong> The lack of batch retrieval capability forces engineers into time-intensive single-part lookup loops and shadow workarounds that create security visibility gaps and inflate AI computing costs.</li>
+<li><strong>Value Proposition, the outcome your initiative promised to deliver (M1):</strong> The optimized API provides batch retrieval that returns every valid part and accounts for every submitted part, restoring engineering velocity, removing the need for shadow workarounds, and giving AI-assisted workflows a path to scale at lower cost.</li>
+</ul>
+<h4>Read your data snapshots</h4>
+<ul>
+<li><strong>Does the funnel data confirm your M2 friction point, or does it tell a different story? Note where the numbers align with the qualitative pain you found and where they diverge.:</strong> The data confirms the M2 friction point, but with added nuance. The funnel shows a depth problem, not a demand problem. Engineers start part lookups but do not reach BOM scale through the sanctioned path, which is the gap the persona's friction describes. The data diverges from the qualitative pain in how it shows the problem: it shows average lookups per session falling (24 to 17) and BOM-scale sessions falling (15% to 7%), not engineers looping more.</li>
+<li><strong>Do the retention patterns align with the workaround your M2 persona used to find content? Note what the Mo. 0→1 drop suggests about the onboarding experience your persona described as frustrating.:</strong> The data aligns with the persona's workaround. The data shows a steep early loss with no sanctioned bulk path (36 to 40 pts from Mo. 0 to Mo. 1), which fits engineers abandoning the sanctioned path for shadow workarounds. The December-onward cohorts show what the data projects if a Batch Pilot were run: better retention, but not a full fix. The Mo. 0 to Mo. 1 drop persists in the projected pilot cohorts (23 to 28 pts), which suggests residual friction beyond bulk access, such as onboarding and payload bloat.</li>
+<li><strong>Does the LTV gap and the content mix (61% trending for Wanderers) confirm the moment of misery your persona described? Note which segment your persona is in and whether the data confirms their pain.:</strong> The data confirms the persona's pain. The persona maps to equipment review engineers. This segment has the largest projected hours saved per review, the highest share of suspected workaround access, and the largest projected improvement in abandonment. The nuance is that Pipeline Automators have higher session frequency (4.8× vs. 2.3×) but a smaller opportunity index (220 vs. 902), so the persona's segment remains the primary opportunity.</li>
+<li><strong>Does the low adoption confirm your persona is burdened by tools they don't use? Note whether the low scheduling adoption (42%) for coordinators matches your M2 moment of misery.:</strong> N/A</li>
+<li><strong>Does the workflow data match the manual process or hack you documented in M2? Note whether the specific drop-offs or time gaps explain why your persona avoids the digital tool.:</strong> N/A</li>
+<li><strong>Look at the CSAT heatmap. Which specific cell most directly maps to your persona's friction? Note how the NPS trend justifies the urgency of your M1 Problem Hook.:</strong> N/A</li>
+</ul>
+<h4>Step 3 · Craft your hypothesis</h4>
+<ul>
+<li><strong>Qualitative evidence (from M2), quote the specific friction / moment of misery for your persona:</strong> The following:<ul>
+<li>Persona friction: Engineers "scrape data from the legacy UI or share unencrypted CSV dumps over insecure channels" (Module 2, shadow workarounds).</li>
+<li>Context: Verifies parts for equipment reviews under delivery pressure with no sanctioned bulk or automated path.</li>
+<li>Takeaway (Module 3 wording): The shadow workaround is a symptom of the missing bulk path.</li>
+</ul>
+</li>
+<li><strong>Quantitative evidence (from M3), name the metric or data point that confirms the pain; cite the number:</strong> Snapshot 3: Equipment Review Engineers show 33% suspected workaround access (vs. 14% and 5% for other segments), 49% looped lookups, and a projected 0.5 to 1 hr saved per review (a review takes 1 to 2 hours). Snapshot 1: BOM-scale sessions fell from 15% to 7%; sessions abandoned after error or timeout rose from 18% to 31%; 412 anomalous bulk-access events per month. (All figures are simulated.)</li>
+<li><strong>Persona, role, goal, and the friction you confirmed in the reconciliation steps:</strong> Equipment review engineer.<ul>
+<li>Goal: Complete a BOM-wide equipment review on schedule without manually looking up each part.</li>
+<li>Confirmed friction: Looping through single lookups with no sanctioned bulk or automated path, leading to shadow workarounds (supported by the 49% looped and 33% suspected workaround access mix, and the 7% BOM-scale sessions).</li>
+</ul>
+</li>
+<li><strong>Problem you are solving , one sentence describing the specific friction this initiative removes:</strong> Equipment review engineers cannot retrieve BOM-scale part data through a sanctioned bulk or automated path, so they loop single lookups or fall back on shadow workarounds.</li>
+<li><strong>Strategic outcome, what behavior change do you expect, and how does it map to retention / revenue / churn?:</strong> The following:<ul>
+<li>Expected behavior change (hypothesis): Engineers complete BOM-wide reviews through a single batch request instead of loops or scraping data from the legacy UI and CSV dumps.</li>
+<li>Mapping: Retention here means staying on the sanctioned retrieval path, and churn means abandonment to shadow workarounds.</li>
+<li>Simulated projection (the Batch Pilot has not yet run): Mo. 1 retention about +13 pts (74.7% vs. 62.0%) and about −22 pts abandonment for Equipment Review Engineers. Revenue is not the lens (internal platform); the value is hours saved, risk reduced, and cost avoided.</li>
+</ul>
+</li>
+<li><strong>Primary success metric (initiative signal), the leading indicator that tells you the gap is closing:</strong> Share of pilot sessions submitting 100+ part numbers.<ul>
+<li>Baseline: 7% (legacy UI sessions with 100+ lookups, down from 15%)</li>
+<li>Target: 14%</li>
+<li>Counting rule: One unit for both paths; a batch-path session is one workflow run.</li>
+<li>Companion signal: Batches that account for every submitted part.</li>
+<li>Measured benefits: Hours per BOM-wide review and tokens per lookup.</li>
+</ul>
+</li>
+<li><strong>Guardrail metric (product signal), the metric that must NOT drop; it protects your existing base:</strong> Daily active engineers must not drop (baseline 8,420).<ul>
+<li>Related guardrail: Batch response time under 1,500 ms per request of up to 1,000 parts.</li>
+<li>Optional guardrail: Legacy single-lookup latency (p95, baseline 620 ms).</li>
+<li>Boundaries: Batch response over 1,500 ms is a breach; investigate a drop of more than 2% in daily active engineers or a rise of more than 10% in legacy p95 latency.</li>
+<li>Daily active engineers covers the whole base, so a select-team pilot cannot move it; it serves as a protective floor.</li>
+<li>The 3% growth in active engineers shows demand is healthy.</li>
+</ul>
+</li>
+<li><strong>Decision window, how much time or data before you scale, pivot, or kill? minimum threshold to proceed?:</strong> About 3 pilot months (13 weeks).<ul>
+<li>Test: 50/50 by engineer; the control group stays on the legacy path.</li>
+<li>Sample: About 1,356 sessions per group (about 100 engineers).</li>
+<li>Proceed: Share reaches 10% or more at p &lt; 0.05, every part is accounted for, and guardrails hold.</li>
+<li>Pivot: Batches work, but the share stays below 10%.</li>
+<li>Stop: Batches drop parts, or guardrails are breached.</li>
+</ul>
+</li>
+<li><strong>Draft your full hypothesis sentence, one to three sentences; quote the metric, name the persona, name the outcome:</strong> Based on the M2 finding that equipment review engineers rely on shadow workarounds because no sanctioned bulk or automated path exists, and simulated M3 data showing 33% suspected workaround access and BOM-scale sessions falling from 15% to 7%, I believe that batch retrieval for equipment review engineers will let BOM-wide reviews complete through the sanctioned path, measured by the share of pilot sessions submitting 100+ part numbers rising from the 7% legacy baseline to a 14% target. I will protect daily active engineers (baseline 8,420) and batch response time under 1,500 ms, and will make a proceed, pivot, or stop decision after 3 pilot months.</li>
+</ul>
+<p><em>The 14% target, the 10% proceed threshold, the 3-month window, the counting rule, the guardrail boundaries, and the test design are proposals. The research gives none of them. All research data is simulated.</em></p></div></div><div class="m-card" style="--col:#60a5fa"><div class="m-head"><div class="m-num">Module 4</div><div class="m-name">Roadmap, PRD &amp; Prototype</div></div><div class="m-body"><h4>Your strategic anchors</h4>
+<ul>
+<li><strong>Persona (M2), who are you solving for?:</strong> Equipment Review Engineers (41% of the engineer base). They verify parts for equipment reviews under delivery pressure with no sanctioned bulk or automated path.</li>
+<li><strong>Primary success metric (M3), your leading indicator:</strong> Share of pilot sessions submitting 100+ part numbers. Baseline 7% (legacy UI sessions with 100+ lookups); hypothesis target 14% (100% relative change), with 10% as the proceed threshold.</li>
+<li><strong>Moment of misery (M2), the specific friction blocking the goal:</strong> An engineer faces a BOM-wide review deadline with no sanctioned bulk or automated path, so they loop single lookups or fall back on shadow workarounds: scraping data from the legacy UI and sharing unencrypted CSV dumps.</li>
+<li><strong>Guardrail metric (M3), what must not drop or break:</strong> Daily active engineers (baseline 8,420; investigate a drop over 2%) and batch response time under 1,500 ms for up to 1,000 parts.</li>
+</ul>
+<h4>Scan the backlog &amp; set a human baseline</h4>
+<ul>
+<li><strong>My instinctive “quick wins” before touching the AI (2 to 3 feature IDs + why):</strong> The following:<ul>
+<li>B5 BOM File Ingestion: Accepts a BOM file and converts it to a part-number batch request. Because this is a core function for equipment reviews.</li>
+<li>B3 Batch-Aware Rate Limit Tier: Counts a batch request as one call against quota instead of up to 1,000. Because this is important for large multi-part lookups.</li>
+<li>B1 Slim Payload Mode: Returns only requested part fields, with no frontend UI elements, to cut token volume. Because this will streamline the process.</li>
+</ul>
+</li>
+</ul>
+<h4>Audit, override &amp; decide</h4>
+<ul>
+<li><strong>Where did you override the AI? (feature + old vs. new score + why):</strong> AI had three Quick Win features. Two matched the three I identified has highest priority. My feature that did not match was ultimately determined to be not a requirement to complete a batch lookup. I let AI override my decision because AI's top feature is mandatory for success. I treated this like a discussion with the architect. The final choice is the technically accurate decision.</li>
+<li><strong>Did the AI over-value a Sales/Eng request your M2 interviews don’t support?:</strong> No. The two requests with engineering or stakeholder origins were scored low and landed in Time Sinker.</li>
+<li><strong>Did it underweight something your M3 cohort/funnel data strongly supports?:</strong> Shadow workarounds remain a critical risk. AI did not underweight this issue, but deferred it. The pilot core addresses the root cause, the missing sanctioned bulk path. Direct countermeasures (Secure Bulk Export and the Audit Dashboard) follow in Later because the sprint is limited to about 6 engineer-weeks, and security controls for the controlled pilot are owned by InfoSec.</li>
+</ul>
+<h4>Generate your interactive roadmap</h4>
+<ul>
+<li><strong>My “Now” lane (this sprint), the 2 to 3 quick wins I’ll build first:</strong> Partial-Success Batch Responses, Batch-Aware Quota Counting, Slim Payload Mode</li>
+<li><strong>What I cut, and the “no” I’m protecting the scope from:</strong> Agent Connector SDK, Async Batch Jobs with Callback, Part Alternates Suggestions</li>
+<li><strong>Prototype/roadmap screenshot link (paste into your deliverables):</strong> Access the feature roadmap, PRD, and prototype from the Support Files at <a target="_blank" rel="noopener" href="https://github.com/mikefederman/pm-final-project/blob/main/06-launch/support-files.md">https://github.com/mikefederman/pm-final-project/blob/main/06-launch/support-files.md</a>.</li>
+</ul></div></div><div class="m-card" style="--col:#3b82f6"><div class="m-head"><div class="m-num">Module 5</div><div class="m-name">Experimentation Plan</div></div><div class="m-body"><h4>Get your documents ready</h4>
+<ul>
+<li><strong>From M3, your hypothesis sentence:</strong> If Equipment Review Engineers get batch retrieval through a sanctioned path, the share of pilot sessions submitting 100+ part numbers will rise from 7% to 14%, while daily active engineers (8,420) hold steady and batch responses stay under 1,500 ms.</li>
+<li><strong>From M3, your primary success metric &amp; guardrail metric:</strong> Primary: share of pilot sessions submitting 100+ part numbers. Guardrails: daily active engineers (8,420) and batch response time under 1,500 ms for up to 1,000 parts.</li>
+<li><strong>From M4, the feature you scoped in your PRD this is what you're testing:</strong> Batch retrieval backend capability: Partial-Success Responses (B2), Batch-Aware Quota Counting (B3) and Automation Payload (B1).</li>
+</ul>
+<h4>Define your experiment parameters</h4>
+<ul>
+<li><strong>Feature under test pull from your M4 PRD:</strong> One request of 1 to 1,000 part numbers. It returns every valid part in an automation payload and flags each invalid part as INVALID_PART without failing the batch. It accounts for every submitted part and is charged as 1 call.</li>
+<li><strong>Persona pull your M2 persona:</strong> Equipment Review Engineer (41% of the engineer base). This engineer verifies parts for equipment reviews under delivery pressure. With no sanctioned bulk or automated path, they loop single lookups or use shadow workarounds (scraping data from the legacy UI, CSV dumps).</li>
+<li><strong>Expected outcome the behaviour change you expect, from your M3 hypothesis:</strong> Engineers complete BOM-wide reviews through a single batch request instead of loops, scraping data from the legacy UI, or CSV dumps.</li>
+<li><strong>Primary success metric the one number that defines success, from M3:</strong> 14% of pilot sessions submitting 100+ part numbers.</li>
+<li><strong>Baseline rate today's rate of your primary metric, from your M3 data:</strong> 7% of legacy UI sessions reach 100+ lookups, down from 15% six months ago.</li>
+<li><strong>Guardrail metric &amp; boundary what must not break, and how far it can move before you investigate:</strong> Batch response time: over 1,500 ms is a breach. Daily active engineers (8,420): investigate a drop of more than 2%. Legacy p95 latency (620 ms): investigate a rise of more than 10%.</li>
+<li><strong>Minimum Detectable Effect (MDE) the smallest improvement worth shipping, your floor:</strong> +3 percentage points (7% → 10%), the pilot's proceed threshold.</li>
+<li><strong>Sample size per arm use the calculator in the builder, baseline + MDE:</strong> 1,356</li>
+<li><strong>Traffic split &amp; test duration 50/50 standard · cover ≥ 2 weekly cycles:</strong> 50/50 by engineer. The control group stays on the legacy path, and the test group uses the batch path.</li>
+<li><strong>Significance threshold p &lt; 0.05 is standard, explain any deviation:</strong> p &lt; 0.05, two-sided. No deviation. The standard threshold fits a pilot whose result feeds a later production decision, so a false positive is costly but recoverable. Two-sided means a drop in the metric can also be detected, not only a rise.</li>
+</ul>
+<h4>Define your control and variant</h4>
+<ul>
+<li><strong>Control (A) the current experience, reference your M2 moment of misery and M3 funnel/workflow data:</strong> See <a target="_blank" rel="noopener" href="https://github.com/mikefederman/pm-final-project/blob/main/05-experimentation/ab-test-control-variant-isolation.md">https://github.com/mikefederman/pm-final-project/blob/main/05-experimentation/ab-test-control-variant-isolation.md</a></li>
+<li><strong>Variant (B) your single change, copy the relevant screens &amp; functional requirements from your M4 PRD:</strong> See <a target="_blank" rel="noopener" href="https://github.com/mikefederman/pm-final-project/blob/main/05-experimentation/ab-test-control-variant-isolation.md">https://github.com/mikefederman/pm-final-project/blob/main/05-experimentation/ab-test-control-variant-isolation.md</a></li>
+<li><strong>Isolation check, what has NOT changed? list everything identical between arms (app version, recommendation engine, notifications, onboarding). If something changed inadvertently, your test is compromised.:</strong> See <a target="_blank" rel="noopener" href="https://github.com/mikefederman/pm-final-project/blob/main/05-experimentation/ab-test-control-variant-isolation.md">https://github.com/mikefederman/pm-final-project/blob/main/05-experimentation/ab-test-control-variant-isolation.md</a></li>
+</ul>
+<h4>Formalize your hypothesis &amp; shipping criteria</h4>
+<ul>
+<li><strong>Your hypothesis (filled in):</strong> I believe that batch retrieval (partial-success responses, batch-aware quota counting and an automation payload) for Equipment Review Engineers will result in BOM-wide reviews completing through the sanctioned path instead of looped lookups or shadow workarounds, as measured by a 7-percentage-point increase (7% to 14%) in the share of pilot sessions submitting 100+ part numbers within 13 weeks. We will protect daily active engineers (8,420) and batch response time under 1,500 ms throughout the test.</li>
+<li><strong>Your shipping criteria (filled in):</strong> The following:<ul>
+<li>We will SHIP if the share of sessions submitting 100+ part numbers improves by ≥ 3 percentage points (7% to 10%) at p &lt; 0.05 (two-sided) and batch response time does not exceed 1,500 ms, daily active engineers do not drop more than 2% (from 8,420) and legacy p95 latency does not rise more than 10% (from 620 ms) after 13 weeks.</li>
+<li>We will ITERATE if direction is positive but lift is below the MDE.</li>
+<li>We will KILL if the primary metric shows no improvement or moves negatively.</li>
+<li>The read date is fixed at the end of 13 weeks, no results reviewed before this date.</li>
+</ul>
+</li>
+<li><strong>Hardest parameter to define, and did it change your hypothesis? quick debrief:</strong> The following:<ul>
+<li><strong>Hardest parameter:</strong> The control group, together with the primary metric definition it depends on. The Module 3 and 4 pilot gave batch retrieval to the whole select team and compared it with the 7% legacy baseline, so there was no control. Setting one up exposed two more gaps. The legacy baseline counts <em>lookups</em>, while the batch path counts <em>part numbers submitted</em>. And a "session" was not defined for an automated workflow. The instrumentation needed to read the metric had also been deferred as out of scope for a basic POC.</li>
+<li><strong>Did it change the hypothesis?</strong> The claim did not change: the same persona, feature, metric, baseline, and 14% target. What changed is how the hypothesis is tested. I added a counting rule that measures both paths in one unit, a 50/50 control group split by engineer, guardrail boundaries, and a fixed 13-week read date. Session counting also moved from a Should to a Must, so the earlier documents now lead into the test.</li>
+</ul>
+</li>
+</ul></div></div><div class="m-card" style="--col:#818cf8"><div class="m-head"><div class="m-num">Module 6</div><div class="m-name">GTM Launch Plan &amp; Success Dashboard</div></div><div class="m-body"><h4>Get your prior work ready</h4>
+<ul>
+<li><strong>The feature you're launching from your M4 PRD, one feature, not a list:</strong> Batch Retrieval: a backend capability that lets an Equipment Review Engineer’s workflow retrieve up to 1,000 part numbers in one request. Every valid part comes back in an automation-ready payload, each invalid part is flagged without failing the batch, and the request counts as one call against quota.</li>
+<li><strong>What your M5 experiment told you shipped / iterating, the evidence behind the launch:</strong> Feature status is not yet shipped. Launching as a controlled pilot, with the ship, iterate or kill decision set for the 13-week read date.</li>
+<li><strong>Your persona pull your M2 persona, this anchors your audience:</strong> Equipment Review Engineers</li>
+</ul>
+<h4>Set your goal, then your audience</h4>
+<ul>
+<li><strong>Primary GTM goal awareness · engagement · conversion, pick one:</strong> Engagement</li>
+<li><strong>Why this goal? what makes this the right goal for this feature right now:</strong> The purpose of the pilot is to test the batch retrieval feature and reach decision whether to ship, iterate, or kill.</li>
+<li><strong>Target audience the specific segment your goal implies, be precise:</strong> The target audience is a select group of engineers who will participate in the pilot.</li>
+</ul>
+<h4>Size your launch</h4>
+<ul>
+<li><strong>Launch tier S (minimal) · M (targeted) · L (multi-channel) · XL (full GTM):</strong> M (targeted)</li>
+<li><strong>Justification reach + revenue impact + what silence would risk:</strong> A select group of engineers will test and help evaluate the quality and functionality of the batch retrieval feature. They are both the pilot audience and the persona of who the feature is targeting.</li>
+<li><strong>Is this a launch or a release? does it need go-to-market, or can it just ship?:</strong> Completion of the pilot will determine whether it can ship. The feature will be released (go to market) if the pilot results are positive.</li>
+</ul>
+<h4>Choose your top three channels and plan assets</h4>
+<ul>
+<li><strong>Channel 1 owned / earned / paid, and why it reaches your audience:</strong> Owned: The persona builds workflows that call the API, so the portal is where they and their collaborators go when wiring a workflow. It’s also where quota and access already live (APIM). The legacy UI is ruled out as a channel, because the PRD keeps it unchanged.</li>
+<li><strong>Channel 2 owned / earned / paid, and why:</strong> Earned: The audience trusts other engineers more than announcements. Pilot engineers can show a real BOM review done in one batch, with measured hours per review (S11). This directly answers the shadow-workaround habit, since peers show the sanctioned path working.</li>
+<li><strong>Channel 3 owned / earned / paid, and why:</strong> Paid (internal equivalent: budgeted slots): It reaches the 41% of the base outside the pilot at a single moment, and it signals sanctioned status. That matters for engineers who use CSV dumps because nothing official exists. This is an inference, since an internal platform has no true paid media.</li>
+<li><strong>Enablement &amp; assets what Sales / CS / Support need, plus the assets to build (one-pager, demo, etc.):</strong> The following:<ul>
+<li>Enablement: Support learns to read partial-success responses, INVALID_PART and 429 errors. Engineering managers get the case for switching. Pilot champions onboard new teams. InfoSec and APIM align on access and quota answers.</li>
+<li>Assets: A shared messaging brief, a one-pager for managers, the existing prototype as a demo, a quick-start kit (B7, pulled forward from Later), a support runbook and FAQ, and a pilot results story after the 13-week read.</li>
+</ul>
+</li>
+</ul>
+<h4>Make it executable</h4>
+<ul>
+<li><strong>Ownership named owner per key activity, individual, not department:</strong> The following:<ul>
+<li>Launch decision, experiment read-out, messaging brief: PM</li>
+<li>Batch endpoint build (B2, B3, B1): Engineer 1</li>
+<li>Session counting (FR 10, M6) and guardrail monitoring: Engineer 2</li>
+<li>Prototype demo, one-pager, quick-start kit (B7): Designer</li>
+<li>Access control and vetting of about 100 pilot engineers: InfoSec lead</li>
+<li>Quota values and developer portal listing: APIM lead</li>
+<li>Support runbook and help desk training: Platform support lead</li>
+<li>Peer demos and onboarding new teams: Pilot champion engineer</li>
+</ul>
+</li>
+<li><strong>Budget &amp; resource gaps what costs extra, and any asset you can't currently build:</strong> The following:<ul>
+<li>Costs extra: the unestimated core endpoint, session counting (M6) and the N+1 fix could push the build past one sprint.</li>
+<li>Other extras are pulling the quickstart kit (B7) forward, InfoSec vetting for about 100 engineers, 13 weeks of team time to monitor the pilot, and small internal promotion slots.</li>
+<li>Can’t build yet: the results story (needs the 13-week read), measured hours saved (time capture is deferred), final docs and sample call (the payload fields are undefined), a security visibility view (B6 and S6 are deferred) and named owners.</li>
+<li>The first step is estimating the endpoint and M6, since nothing can be costed reliably until then.</li>
+</ul>
+</li>
+<li><strong>Timeline Phase 1 beta → Phase 2 launch moment → Phase 3 post-launch:</strong> The following:<ul>
+<li><strong>Build (Weeks 1–3)</strong><ul>
+<li>Build B2, B3, B1 and M6</li>
+<li>Run PRD evals</li>
+<li>InfoSec vets test group of engineers</li>
+<li>Gate: evals pass, response under 1,500 ms</li>
+</ul>
+</li>
+<li><strong>Phase 1: Beta (Weeks 4–16)</strong><ul>
+<li>50/50 split by engineer</li>
+<li>Test group on the batch path</li>
+<li>Control group on the legacy path</li>
+<li>Communication to the test group only</li>
+<li>Guardrails monitored throughout</li>
+<li>No peeking at the primary metric</li>
+<li>Gate: Fixed read date at week 16</li>
+</ul>
+</li>
+<li><strong>Phase 2: Launch Moment (About Week 17)</strong><ul>
+<li>Read results</li>
+<li>Apply ship, iterate or kill criteria</li>
+<li>All-hands announcement</li>
+<li>Developer portal listing</li>
+<li>One-pager release</li>
+<li>Pilot engineers’ results story</li>
+<li>Gate: ship decision</li>
+</ul>
+</li>
+<li><strong>Phase 3: Post-Launch (Week 18 Onward)</strong><ul>
+<li>Release the quick-start kit (B7)</li>
+<li>Peer demos</li>
+<li>Onboard new teams</li>
+<li>Monitor guardrails</li>
+<li>Deliver Next items: security guardrails, Should list, quota policy</li>
+<li>Deliver Later items: B5, B4, B6</li>
+<li>Gate: general production release after security guardrails</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Define how you'll know it worked</h4>
+<ul>
+<li><strong>Success metrics 2 to 3 metrics that match your GTM goal:</strong> The following:<ul>
+<li><strong>1. Share Of Sessions Submitting 100+ Part Numbers</strong><ul>
+<li>Baseline: 7%</li>
+<li>Target: 14% (10% to proceed)</li>
+<li>Tracks BOM-wide reviews moving to the sanctioned path</li>
+</ul>
+</li>
+<li><strong>2. Anomalous Bulk-Access Events Per Month</strong><ul>
+<li>Baseline: 412</li>
+<li>Target: decrease (no target set)</li>
+<li>Tracks the decline of shadow workarounds</li>
+<li>Read after launch, across the whole base</li>
+</ul>
+</li>
+<li><strong>3. Daily Active Engineers (Guardrail)</strong><ul>
+<li>Baseline: 8,420</li>
+<li>Target: no decrease</li>
+<li>Investigate a drop over 2%</li>
+<li>Confirms the existing base is not pushed away</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Bad signal to watch for e.g. high reach, zero signups = message-market mismatch:</strong> The following:<ul>
+<li>Primary bad signal: high reach with a flat BOM-scale share. The all-hands, portal visits and quick-start downloads go up, but the share of sessions with 100+ part numbers stays near 7%.</li>
+<li>What it means:<ul>
+<li>Engineers heard about the path but did not move their BOM reviews onto it.</li>
+<li>The message lands, but the workflow does not fit.</li>
+</ul>
+<p class="aside">The hypothesis doc calls this the pivot case: “the barrier is payload or workflow design rather than bulk retrieval.”</p>
+</li>
+<li>Additional signals to watch:<ul>
+<li>Batch usage rises, but anomalous bulk-access events stay near 412 a month: The batch path is being used in addition to workarounds, not instead of them. The security story isn’t landing.</li>
+<li>Batch requests are mostly under 100 parts: Engineers treat batch as a faster single lookup, not a BOM-wide tool. The BOM-scale use case isn’t coming through.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Most likely post-launch decision double-down · iterate · pivot · deprioritize, and what would trigger it:</strong> The following:<ul>
+<li>Most likely: Iterate. This is an inference based on the simulated Module 3 projections.</li>
+<li>Why:<ul>
+<li>Snapshot 2 projects the batch path improving Month 1 retention by about 13 points.</li>
+<li>The Month 0 → 1 drop still persists, at 23–28 points.</li>
+<li>Module 3 attributes that leftover drop to onboarding and payload friction, not to bulk access.</li>
+<li>The fixes for it (the B7 quick-start kit and a defined payload field set) are not in the pilot build.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div></div></div></section>
+<section><div class="eyebrow">Module 6</div><h2>Individual Insights</h2><p class="lede">Where the work was hardest, the moment my thinking changed, and what I learned.</p><div class="in-grid"><div class="in-card" style="--col:#22d3ee"><div class="in-label">Friction points</div><p>AI did a deep dive into the technical aspects of this feature. The resulting prototype is easy to follow, but some of the background content that supports it is quite complex. Without AI to parse it, I would need a lot more time to define some of the technical requirements and measurement metrics.</p></div><div class="in-card" style="--col:#a78bfa"><div class="in-label">Aha moment</div><p>I originally reached the end of Module 5 and did not understand what I had built based on the prototype. Because of the added requirements in Module 5, I went back and retraced my path to get there. When I created the final version of the prototype, I requested the pop-up window that explains what the demo is as clarification for myself as well as the user. It is a visualization of backend functionality, not a UI to perform a workflow.</p></div><div class="in-card" style="--col:#fbbf24"><div class="in-label">Key learnings</div><p>Module 5 changed the arc of the project from a general add-on feature to actually measuring the results. I had to go back and update content for the roadmap planning and MoSCoW to ensure the instrumentation necessary would be available. However, it likely would require at least one more sprint than originally planned to include all the necessary instrumentation. I picked up new vocabulary that is actively being used in my work environment. The PRD/prototype exercise was especially useful as that will likely be the path forward instead of Epics.</p></div></div></section>
+<section><div class="eyebrow">Supporting materials</div><h2>Support Files</h2><p class="lede">The interactive roadmap, PRD and prototype referenced throughout the modules above.</p><div class="support"><div><h3>To open an HTML file from GitHub</h3><ol><li>Click one of the HTML links.</li><li>From the GitHub HTML code screen, click the &ldquo;Download raw file&rdquo; arrow in the upper right-hand corner.</li><li>Open the downloaded file.</li></ol></div><div class="links"><div class="link-group">Interactive Roadmap</div><a href="https://github.com/mikefederman/pm-final-project/blob/main/04-roadmap/roadmap-batch-retrieval.html" target="_blank" rel="noopener">Interactive Roadmap<span>HTML</span></a><div class="link-group">Product Requirements Document</div><a href="https://github.com/mikefederman/pm-final-project/blob/main/04-roadmap/prd-batch-retrieval.md" target="_blank" rel="noopener">Product Requirements Document<span>MD</span></a><a href="https://github.com/mikefederman/pm-final-project/blob/main/04-roadmap/prd-prototype-support-files/2-prd-batch-retrieval.pdf" target="_blank" rel="noopener">Product Requirements Document<span>PDF</span></a><div class="link-group">Prototype</div><a href="https://github.com/mikefederman/pm-final-project/blob/main/04-roadmap/prototype-batch-retrieval.html" target="_blank" rel="noopener">Batch Retrieval Demo<span>HTML</span></a></div></div></section>
+<footer>Mike Federman &middot; Product Management Foundations &middot; Final Project</footer>
+</main>
+</body>
+</html>
