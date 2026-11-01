@@ -1,9 +1,21 @@
 # PRD & Prototype Sprint (Module 4)
 
 ## Pick & scope with MoSCoW
-- **The “Now” feature I’m scoping (name + one-line core description):** My Now feature is Batch Retrieval, a backend capability that lets an engineer’s workflow retrieve 1 to 1,000 part numbers in one request. It combines three complementary parts. Providing one without the others does not fully mitigate the moment of misery. 1) Partial-Success Responses: a batch request returns results for every valid part number and a flagged entry for each invalid one, so one bad part number does not fail the request. 2) Batch-Aware Quota Counting: a batch request counts as one call against the applicable quota, whether it holds 1 or 1,000 part numbers. 3) Automation Payload: returned parts carry the data a workflow needs, with no UI layout, image URLs or styling data.
-- **My finalized Must-Haves (after overriding the AI):** There are six finalized Must-Haves: 1) Failure isolation: an invalid part number does not abort the batch. Valid parts return with a partial-success response. Batches of 1 to 1,000 parts are accepted, and a batch of one is a single lookup. 2) Per-part result entries: each part is keyed by part number, with a status (Returned or Flagged) and a reason code field. One generic invalid code (INVALID_PART) is enough for the first sprint. 3) No silent drops: Returned plus Flagged equals submitted in every response. 4) Batch-level quota charge: quota is evaluated and charged as 1 call per batch, for any size from 1 to 1,000. 5) Automation payload: returned entries carry the part data a workflow needs, with no UI layout, image URLs or styling data. 6) Pilot measurement: sessions that retrieve 100+ part numbers are counted on both the legacy path and the batch path with one counting rule, so the pilot can read the primary metric.
-- **What I demoted from Must → Should/Won’t, and why:** The list of Should, Could, and Won't is quite extensive. I did a pre-exercise completion prototype of what AI thought was required for this combined feature. A lot of the functionality was stripped after MoSCoW rules. The primary reasons for not including these items are workflow can complete without it, a convenience function, and better visibility but not a critical function.
+- **The “Now” feature I’m scoping (name + one-line core description):** My Now feature is Batch Retrieval, a backend capability that lets an engineer’s workflow retrieve 1 to 1,000 part numbers in one request. It combines three complementary parts. Providing one without the others does not fully mitigate the moment of misery.
+  1) Partial-Success Responses: a batch request returns results for every valid part number and a flagged entry for each invalid one, so one bad part number does not fail the request.
+  2) Batch-Aware Quota Counting: a batch request counts as one call against the applicable quota, whether it holds 1 or 1,000 part numbers.
+  3) Automation Payload: returned parts carry the data a workflow needs, with no UI layout, image URLs or styling data.
+- **My finalized Must-Haves (after overriding the AI):** There are six finalized Must-Haves:
+  1) Failure isolation: an invalid part number does not abort the batch. Valid parts return with a partial-success response. Batches of 1 to 1,000 parts are accepted, and a batch of one is a single lookup.
+  2) Per-part result entries: each part is keyed by part number, with a status (Returned or Flagged) and a reason code field. One generic invalid code (INVALID_PART) is enough for the first sprint.
+  3) No silent drops: Returned plus Flagged equals submitted in every response.
+  4) Batch-level quota charge: quota is evaluated and charged as 1 call per batch, for any size from 1 to 1,000.
+  5) Automation payload: returned entries carry the part data a workflow needs, with no UI layout, image URLs or styling data.
+  6) Pilot measurement: sessions that retrieve 100+ part numbers are counted on both the legacy path and the batch path with one counting rule, so the pilot can read the primary metric.
+- **What I demoted from Must → Should/Won’t, and why:** The list of Should, Could, and Won't is quite extensive. I did a pre-exercise completion prototype of what AI thought was required for this combined feature. A lot of the functionality was stripped out after MoSCoW rules. The primary reasons for not including these other items are:
+  - Workflow can complete without it.
+  - A convenience function.
+  - Better visibility but not a critical function.
 
 ## Generate your Simplified PRD
 - **One thing my PRD makes explicit that a vague brief would have missed:** There are a lot of technical design notes in the PRD. A brief would likely avoid this level of granularity on purpose. The PRD also includes accounting for what is not being developed at this time. An interested executive might ask why not include more functionality? Answer: Not enough resources. Response: I'll get my checkbook.
