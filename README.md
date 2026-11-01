@@ -1,8 +1,8 @@
 # My Product: Product Management Final Project
 
-> My final project for Product School's **Product Management** certification. One product concept, **StreamLine Spotlight** or **RouteLogic Velocity** (or my own initiative), taken from a raw problem to a launch-ready concept across six in-class labs, no homework required.
+> My final project for Product School's **Product Management** certification. One product concept, **Batch Retrieval for Part Repository** (my own initiative), taken from a raw problem to a launch-ready concept across six in-class labs, no homework required.
 
-This is a **template repo**. Click **Use this template → Create a new repository**, name it something like `pm-final-project`, and fill in one folder per module as you go. This is an **individual project**: your work is yours alone.
+The deliverables are available in their module folders. The final project was created outside the Final Presentation file, so that file is just a template.
 
 ---
 
@@ -24,7 +24,11 @@ This is a **template repo**. Click **Use this template → Create a new reposito
 
 ## The project in one sentence
 
-_What is your product concept, who is it for, and what's the single bet you're making?_
+**Product concept:** Batch Retrieval for the Part Identification Repository. It is a backend capability that lets an engineer’s automated workflow retrieve 1 to 1,000 part numbers in one request. Every valid part comes back in an automation-ready payload, each invalid part is flagged without failing the batch, and the request counts as one call against quota.
+
+**Who it’s for:** Equipment Review Engineers, 41% of the engineer base. They verify parts for equipment reviews under delivery pressure. With no sanctioned bulk or automated path, they loop single lookups or fall back on shadow workarounds such as scraping data from the legacy UI and sharing CSV dumps.
+
+**The single bet:** that engineers turn to workarounds because the sanctioned bulk path is missing, not by preference. If that path exists, BOM-wide reviews will move onto it. This is measured by the share of pilot sessions submitting 100+ part numbers rising from 7% to 14%, while daily active engineers and response time hold.
 
 ___
 
