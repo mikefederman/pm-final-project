@@ -44,7 +44,6 @@
   - Run PRD evals
   - InfoSec vets test group of engineers
   - Gate: evals pass, response under 1,500 ms
-
   **Phase 1: Beta (Weeks 4–16)**
     - 50/50 split by engineer
     - Test group on the batch path
@@ -53,7 +52,6 @@
     - Guardrails monitored throughout
     - No peeking at the primary metric
     - Gate: Fixed read date at week 16
-
   **Phase 2: Launch Moment (About Week 17)**
     - Read results
     - Apply ship, iterate or kill criteria
@@ -62,7 +60,6 @@
     - One-pager release
     - Pilot engineers’ results story
     - Gate: ship decision
-
   **Phase 3: Post-Launch (Week 18 Onward)**
     - Release the quick-start kit (B7)
     - Peer demos
@@ -74,17 +71,15 @@
 
 ## Define how you'll know it worked
 - **Success metrics 2 to 3 metrics that match your GTM goal:** The following:
-  1. Share Of Sessions Submitting 100+ Part Numbers
+  **1. Share Of Sessions Submitting 100+ Part Numbers**
     - Baseline: 7%
     - Target: 14% (10% to proceed)
     - Tracks BOM-wide reviews moving to the sanctioned path
-
   **2. Anomalous Bulk-Access Events Per Month**
     - Baseline: 412
     - Target: decrease (no target set)
     - Tracks the decline of shadow workarounds
     - Read after launch, across the whole base
-
   **3. Daily Active Engineers (Guardrail)**
     - Baseline: 8,420
     - Target: no decrease
