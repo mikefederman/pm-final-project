@@ -2,9 +2,9 @@
 
 ## Pick & scope with MoSCoW
 - **The “Now” feature I’m scoping (name + one-line core description):** My Now feature is Batch Retrieval, a backend capability that lets an engineer’s workflow retrieve 1 to 1,000 part numbers in one request. It combines three complementary parts. Providing one without the others does not fully mitigate the moment of misery.
-  1) Partial-Success Responses: a batch request returns results for every valid part number and a flagged entry for each invalid one, so one bad part number does not fail the request.
-  2) Batch-Aware Quota Counting: a batch request counts as one call against the applicable quota, whether it holds 1 or 1,000 part numbers.
-  3) Automation Payload: returned parts carry the data a workflow needs, with no UI layout, image URLs or styling data.
+  1. Partial-Success Responses: a batch request returns results for every valid part number and a flagged entry for each invalid one, so one bad part number does not fail the request.
+  2. Batch-Aware Quota Counting: a batch request counts as one call against the applicable quota, whether it holds 1 or 1,000 part numbers.
+  3. Automation Payload: returned parts carry the data a workflow needs, with no UI layout, image URLs or styling data.
 - **My finalized Must-Haves (after overriding the AI):** There are six finalized Must-Haves:
   1) Failure isolation: an invalid part number does not abort the batch. Valid parts return with a partial-success response. Batches of 1 to 1,000 parts are accepted, and a batch of one is a single lookup.
   2) Per-part result entries: each part is keyed by part number, with a status (Returned or Flagged) and a reason code field. One generic invalid code (INVALID_PART) is enough for the first sprint.
