@@ -2,7 +2,7 @@
 
 > My final project for Product School's **Product Management** certification. One product concept, **Batch Retrieval for Part Identification Repository** (my own initiative), taken from a raw problem to a launch-ready concept across six in-class labs, no homework required.
 
-The deliverables are available in their module folders. The final project was created outside the Final Presentation file, so that file is just a template.
+The deliverables are available in their module folders. The final project was created outside the Final Presentation file, so that .md file is just a template.
 
 ---
 
