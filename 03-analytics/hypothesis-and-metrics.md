@@ -29,10 +29,10 @@
   -  Target: 14%
   -  Counting rule: one unit for both paths; a batch-path session is one workflow run
   -  Companion signal: batches that account for every submitted part
-  -  Measured benefits: hours per BOM-wide review and tokens per lookup.
+  -  Measured benefits: hours per BOM-wide review and tokens per lookup
 - **Guardrail metric (product signal) , the metric that must NOT drop; it protects your existing base:** Daily active engineers must not drop (baseline 8,420). Related guardrail: batch response time must stay under 1,500 ms per request of up to 1,000 parts, per the key metrics. Optional guardrail: legacy single-lookup latency (p95, baseline 620 ms), since repeated calls also degrade interactive users. The 3% growth in active engineers shows demand is healthy, and this metric protects the existing base. Daily active engineers counts the whole base, so a select-team pilot cannot move it, and it serves as a protective floor. Boundaries (proposal): batch response time over 1,500 ms is a breach; a drop of more than 2% in daily active engineers or a rise of more than 10% in legacy p95 latency (above 620 ms) triggers an investigation.
 - **Decision window , how much time or data before you scale, pivot, or kill? minimum threshold to proceed?:** About 3 pilot months (13 weeks).
-  - Test: 50/50 by engineer. The control group stays on the legacy path.
+  - Test: 50/50 by engineer; the control group stays on the legacy path.
   - Sample: about 1,356 sessions per group (about 100 engineers)
   - Proceed: share reaches 10% or more at p < 0.05, every part is accounted for, and guardrails hold
   - Pivot: batches work, but the share stays below 10%
