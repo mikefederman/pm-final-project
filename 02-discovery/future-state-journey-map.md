@@ -11,7 +11,7 @@
 **1. Submit → 2. Retrieve → 3. Analyze → 4. Deliver**
 
 ### 1. Submit
-- **User Action:** Start the workflow, which submits 1 to 1,000 part numbers (target) in one authenticated request → no sequential loops
+- **User Action:** Start the workflow, which submits 1 to 1,000 part numbers (benefit) in one authenticated request → no sequential loops
 - **Internal State:** Confident the sanctioned path works → no urge to improvise a workaround
 - **Pain Point Addressed:** Replaces custom wrappers → no hundreds of sequential GETs
 
@@ -33,7 +33,7 @@
 
 ## Competitive Advantages Over the Shadow Workaround
 
-1. **Speed:** 1,000 lookups in under 1,500 ms (target) → replaces hundreds of sequential requests
+1. **Speed:** 1,000 lookups in under 1,500 ms (benefit) → replaces hundreds of sequential requests
 2. **Security:** Sanctioned path → removes the need for shadow workarounds; visibility assumed through existing activity logging and reporting
 3. **Cost:** Stripped, AI-ready payloads → ≥75% lower AI computing cost (benefit)
 
