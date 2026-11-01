@@ -74,6 +74,7 @@
 
 ## Define how you'll know it worked
 - **Success metrics 2 to 3 metrics that match your GTM goal:** The following:
+
   **1. Share Of Sessions Submitting 100+ Part Numbers**
     - Baseline: 7%
     - Target: 14% (10% to proceed)
@@ -84,6 +85,7 @@
     - Target: decrease (no target set)
     - Tracks the decline of shadow workarounds
     - Read after launch, across the whole base
+  
   **3. Daily Active Engineers (Guardrail)**
     - Baseline: 8,420
     - Target: no decrease
